@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- ===== Meta ===== -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Weilun Lin · Data & AI</title>
+  <meta name="description" content="Single-page portfolio of Weilun Lin — Data & AI. Resume, projects, portfolio and contact." />
+
+  <!-- ===== Fonts ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- ===== Styles (no framework) ===== -->
+  <style>
+    :root{
+      --bg:#0b1020;        /* deep navy */
+      --bg-2:#0f1530;
+      --card:#101a34;
+      --fg:#e8ecff;        /* near-white */
+      --muted:#a7b3ff;     /* soft indigo */
+      --accent:#6ee7ff;    /* neon cyan */
+      --accent-2:#8b5cf6;  /* neon violet */
+      --border:rgba(255,255,255,.08);
+      --radius:18px;
+      --shadow:0 10px 30px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.03) inset;
+    }
+
+    *{box-sizing:border-box}
+    html,body{
+      margin:0; padding:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
+      color:var(--fg);
+      background:
+        radial-gradient(1200px 800px at 85% -10%, rgba(139,92,246,.22), transparent 60%),
+        radial-gradient(900px 700px at -10% 20%, rgba(110,231,255,.16), transparent 60%),
+        var(--bg);
+      scroll-behavior:smooth; /* 平滑滚动 */
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1100px; margin:0 auto; padding:0 20px}
+
+    /* ===== Header / Nav ===== */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background:linear-gradient(180deg, rgba(10,12,26,.8), rgba(10,12,26,.2));
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px}
+    .brand .dot{width:10px; height:10px; border-radius:50%;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      box-shadow:0 0 14px var(--accent)}
+    .nav a{margin-left:16px; font-weight:700; opacity:.9}
+    .nav a.active{color:#fff; background:rgba(139,92,246,.18); padding:8px 12px; border-radius:999px; text-decoration:none; border:1px solid rgba(139,92,246,.4)}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:999px;
+      background:linear-gradient(135deg, rgba(110,231,255,.15), rgba(139,92,246,.15));
+      border:1px solid var(--border); color:var(--fg); box-shadow:var(--shadow); font-weight:800}
+    .btn:hover{background:linear-gradient(135deg, rgba(110,231,255,.25), rgba(139,92,246,.25))}
+    .btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+    /* ===== Nav avatar ===== */
+    .avatar{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid rgba(139,92,246,.6);
+    box-shadow:0 0 12px rgba(110,231,255,.3);
+    transition: transform .3s ease;
+    }
+    .avatar:hover{
+    transform:scale(1.5);
+    }
+    .brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    }
+    /* === Nav avatar (small) === */
+    .avatar{
+    width:40px; height:40px; border-radius:50%;
+    object-fit:cover;
+    border:2px solid rgba(255,255,255,.85);
+    box-shadow:0 0 12px rgba(139,92,246,.35);
+    transition: transform .22s ease, box-shadow .22s ease;
+    }
+    .avatar-btn{background:transparent; border:0; padding:0; cursor:pointer; display:inline-flex}
+    .avatar-btn:hover .avatar{
+    transform:scale(1.08);
+    box-shadow:0 0 18px rgba(110,231,255,.55);
+    }
+
+    /* === Popover card === */
+    .brand{position:relative; display:flex; align-items:center; gap:12px}
+    .profile-popover{
+    position:absolute; top:56px; left:0;
+    min-width:260px; background:var(--card);
+    border:1px solid var(--border); border-radius:16px;
+    box-shadow:var(--shadow); padding:12px;
+    opacity:0; transform:translateY(-6px) scale(.98);
+    pointer-events:none; transition:opacity .16s ease, transform .16s ease;
+    z-index:60;
+    }
+    .profile-popover::before{
+    content:""; position:absolute; top:-8px; left:16px;
+    width:14px; height:14px; transform:rotate(45deg);
+    background:var(--card); border-left:1px solid var(--border); border-top:1px solid var(--border);
+    }
+    .brand.open .profile-popover{opacity:1; transform:translateY(0) scale(1); pointer-events:auto;}
+
+    .profile-head{display:flex; align-items:center; gap:10px; margin-bottom:8px}
+    .avatar-lg{
+    width:42px; height:42px; border-radius:50%; object-fit:cover;
+    border:2px solid rgba(255,255,255,.85);
+    }
+    .muted{color:var(--muted); font-size:.9rem}
+
+    .profile-links{display:grid; gap:8px; margin-top:8px}
+    .profile-links a{
+    display:block; padding:10px 12px; border-radius:12px;
+    background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06);
+    text-decoration:none; color:var(--fg); font-weight:600;
+    }
+    .profile-links a:hover{
+    background:rgba(139,92,246,.18); border-color:rgba(139,92,246,.35);
+    }
+
+
+
+    /* ===== Sections ===== */
+    section{padding:70px 0}
+    .sec-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:24px}
+    .sec-head h2{margin:0; font-size:28px}
+
+    /* ===== Home (Hero) ===== */
+    .hero{padding:90px 0 60px}
+    .hero-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:36px}
+    .badge{display:inline-flex; align-items:center; gap:8px; padding:8px 12px;
+      border-radius:999px; background:rgba(139,92,246,.18); border:1px solid rgba(139,92,246,.35);
+      color:#eae4ff; font-weight:800; font-size:.85rem}
+    .title{font-size:48px; line-height:1.12; margin:14px 0 8px; letter-spacing:.2px}
+    .subtitle{font-size:18px; color:var(--muted); max-width:60ch}
+    .pill-row{display:flex; gap:10px; flex-wrap:wrap; margin:18px 0 28px}
+    .pill{padding:8px 12px; border:1px solid var(--border); border-radius:999px; background:rgba(255,255,255,.03); font-weight:700; font-size:.9rem}
+
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px}
+    .kpis{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+    .kpi{padding:14px 16px; border-radius:14px; background:var(--card); border:1px solid rgba(255,255,255,.06)}
+    .kpi b{font-size:22px; display:block}
+
+    /* ===== Hero: two-tone w/ animated ideas, solid turning, cool-blue realities ===== */
+    :root{
+    /* Turning 固定色（与 ideas 渐变接近的纯色）*/
+    --turning:#e6eaff;   /* periwinkle 蓝紫 */
+
+    /* realities 统一色（更贴合深色背景的冷蓝）*/
+    --reality:#9FD7FF;   /* cool blue */
+    }
+
+    .brand-title{
+    font-size:52px; line-height:1.15; font-weight:800; letter-spacing:.2px;
+    margin-bottom:14px; color:var(--turning);
+    }
+
+    /* Turning 纯色（与 ideas 相近）*/
+    .turning{ color:var(--turning); }
+
+    /* ideas：蓝紫渐变 + 轻微来回波动 */
+    .ideas{
+    background:linear-gradient(135deg, var(--accent), var(--accent-2));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    background-size:220% 220%;
+    animation:ideasShift 8s ease-in-out infinite;
+    }
+    @keyframes ideasShift{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+    }
+
+    /* into realities：整段冷蓝 + 柔和底线 */
+    .reality-text{
+    display:inline-block;
+    color:var(--reality);
+    font-weight:900;
+    position:relative;
+    }
+    .reality-text::after{
+    content:""; position:absolute; left:0; right:0; bottom:-8px; height:4px;
+    background:linear-gradient(90deg, rgba(139,92,246,0), rgba(110,231,255,.25), var(--reality));
+    border-radius:3px; opacity:.65;
+    }
+
+    /* 桌面换行控制 & 移动端回落 */
+    .br-desktop{ display:none; }
+    @media (min-width: 900px){ .br-desktop{ display:block; } }
+    @media (max-width: 900px){
+    .brand-title{ font-size:38px; line-height:1.2; text-align:center; }
+    .tagline{ text-align:center; }
+    }
+
+
+
+    /* ===== Resume (Experience) ===== */
+    /* ===== Dropdown for CV download ===== */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: var(--card);
+      min-width: 160px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.06);
+      box-shadow: var(--shadow);
+      z-index: 100;
+    }
+    .dropdown-content a {
+      color: var(--fg);
+      padding: 10px 14px;
+      text-decoration: none;
+      display: block;
+      font-weight: 600;
+    }
+    .dropdown-content a:hover {
+      background: rgba(139,92,246,.2);
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .grid{display:grid; grid-template-columns:repeat(12,1fr); gap:18px}
+    .xp{grid-column:span 12; display:grid; grid-template-columns:1.1fr 2fr; gap:16px;
+      padding:18px; border-radius:16px; background:var(--card); border:1px solid rgba(255,255,255,.06); align-items: start}
+    .xp h3{margin:0 0 6px; font-size: 1.3rem}
+    .xp small{color:var(--muted)}
+    .xp ul{margin:16px 0 0 10px; font-size: 0.98rem; line-height: 1.5}
+    .xp li{margin:6px 0}
+
+    /* ===== Projects ===== */
+    .proj{grid-column:span 6; padding:22px 24px; border-radius:16px; background:var(--card); border:1px solid rgba(255,255,255,.06)}
+    .proj p {line-height: 1.55;  /* 增加段落行距 */ margin-bottom: 14px; /* 段落与tags的间距 */}
+    .proj.tag {margin-top: 6px; margin-right: 10px;}
+    .proj h3{margin:0 0 6px}
+    .tag{display:inline-block; margin-right:8px; margin-top:6px; padding:6px 10px; border-radius:999px;
+      background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); font-size:.85rem}
+
+    /* ===== Portfolio (Gallery) ===== */
+    .gallery{display:grid; grid-template-columns:repeat(12,1fr); gap:18px}
+    .shot{grid-column:span 4; overflow:hidden; border-radius:16px; border:1px solid rgba(255,255,255,.06); background:var(--card)}
+    .thumb{height:160px; background:linear-gradient(135deg, rgba(110,231,255,.18), rgba(139,92,246,.18))}
+    .shot .meta{padding:12px 14px; font-size:.95rem}
+    /* 让缩略图可点击（继承你的 .thumb 外观） */
+    .shot .thumb{ cursor:pointer; border:0; width:100%; display:block; }
+
+    /* Lightbox */
+    .lightbox{
+      position:fixed; inset:0; background:rgba(3,6,16,.85);
+      display:none; align-items:center; justify-content:center; z-index:1000;
+      padding:24px;
+    }
+    .lightbox.open{ display:flex; }
+    .lightbox img{
+      max-width:min(1200px,92vw); max-height:86vh; border-radius:14px;
+      box-shadow:0 10px 40px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.08) inset;
+    }
+    .lb-close{
+      position:absolute; top:18px; right:22px; font-size:26px; line-height:1;
+      background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.18);
+      border-radius:12px; color:var(--fg); padding:8px 12px; cursor:pointer;
+    }
+    .lb-close:hover{ background:rgba(139,92,246,.2); border-color:rgba(139,92,246,.5); }
+
+
+    /* ===== Skills ===== */
+    .skills{display:flex; flex-wrap:wrap; gap:10px}
+
+    /* ===== Footer ===== */
+    footer{padding:40px 0 60px; color:var(--muted); border-top:1px solid rgba(255,255,255,.06)}
+
+    /* ===== Responsive ===== */
+    @media (max-width: 960px){
+      .hero-grid{grid-template-columns:1fr}
+      .kpis{grid-template-columns:1fr 1fr}
+      .xp{grid-template-columns:1fr}
+      .proj{grid-column:span 12}
+      .shot{grid-column:span 6}
+      .title{font-size:38px}
+    }
+    @media (max-width: 640px){
+      .kpis{grid-template-columns:1fr}
+      .shot{grid-column:span 12}
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 600px) {
+      .hero-actions {
+        justify-content: center;
+        text-align: center;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <!-- ===== Header / Nav ===== -->
+  <header>
+    <div class="container nav">
+      <div class="brand" id="brandWrap">
+        <button class="avatar-btn" id="avatarBtn" aria-haspopup="true" aria-expanded="false" title="Open profile card">
+             <img src="profile.jpeg" alt="Weilun Lin" class="avatar">
+        </button>
+        <span>Weilun Lin · Data & AI</span>
+
+        <!-- Popover 卡片 -->
+        <div class="profile-popover" id="profileCard" role="dialog" aria-label="Profile quick actions">
+            <div class="profile-head">
+                <img src="profile.jpeg" alt="" class="avatar-lg">
+                <div>
+                    <strong>Weilun Lin</strong>
+                    <div class="muted">Data & AI · Toulouse</div>
+                </div>
+            </div>
+            <div class="profile-links">
+                <a href="mailto:weilun.lin911@gmail.com">Email</a>
+                <a href="https://www.linkedin.com/in/velenlin/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://github.com/VelenL" target="_blank" rel="noopener">GitHub</a>
+                <a href="#contact">Go to Contact</a>
+            </div>
+        </div>
+      </div> 
+      <nav>
+        <a href="#home" class="active">Home</a>
+        <a href="#resume">Resume</a>
+        <a href="#projects">Projects</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== Home ===== -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <span class="badge">Open to CDI · Toulouse / France</span>
+          <h1 class="title brand-title">
+            <span class="turning">Turning</span> <span class="ideas">ideas</span>
+            <br class="br-desktop">
+            <span class="reality-text">into realities.</span>
+          </h1>
+          <p class="subtitle">
+            MSc in Artificial Intelligence & Business Analytics (TBS). 
+          </p>
+          <p class="subtitle">
+            Data Analyst / Junior Data Scientist specialised in automated reporting,
+            interactive dashboards and applied ML for pricing, product data and operations.
+            Experienced across manufacturing, consulting and international projects.
+          </p>
+          <div class="pill-row">
+            <span class="pill">Python</span><span class="pill">SQL</span><span class="pill">R</span>
+            <span class="pill">Power BI</span><span class="pill">Tableau</span><span class="pill">Azure</span>
+          </div>
+          <div class="hero-actions">
+            <a class="btn" href="https://www.linkedin.com/in/velenlin/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn" href="https://github.com/VelenL" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn" href="#projects">View Projects</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="kpis">
+            <div class="kpi"><small>Experience</small><b>2 yrs</b><small>Data / AI</small></div>
+            <div class="kpi"><small>Datathon</small><b>Best Model</b><small>TBS 2023</small></div>
+            <div class="kpi"><small>Languages</small><b>EN · FR · ZH</b><small>DALF C1</small></div>
+          </div>
+          <div style="margin-top:16px; font-size:.95rem; color:var(--muted)">
+            Recently: pricing data consolidation (200+ series), international product DB restructure (200k+ parts), Streamlit apps for UX & automation.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Resume ===== -->
+    <section id="resume">
+      <div class="container">
+        <div class="sec-head">
+          <h2>Professional Experience</h2>
+          <div class="dropdown">
+            <button class="btn">Download CV ▾</button>
+            <div class="dropdown-content">
+              <a href="CV_WeilunLIN_english.pdf" download>English</a>
+              <a href="CV_WeilunLIN_french.pdf" download>Français</a>
+            </div>
+          </div>
+        </div>
+        <div class="grid">
+          <!-- ITT360 -->
+          <article class="xp">
+            <div>
+              <h3>Data Analyst · ITT 360 GmbH</h3>
+              <small>Jul 2025 – Sep 2025 · Remote </small>
+              <div class="pill-row" style="margin-top:10px;">
+                <span class="pill">Excel</span>
+                <span class="pill">Python</span>
+              </div>
+            </div>
+            <div>
+              <ul>
+                <li>Integrated & consolidated data from <b>200+ product series</b>.</li>
+                <li>Improved pricing capacity tracking via better validation & integration.</li>
+                <li>Analyzed inconsistencies and resolved data quality issues.</li>
+              </ul>
+            </div>
+          </article>
+          <!-- RHAPSODY -->
+          <article class="xp">
+            <div>
+              <h3>Data Consultant · Rhapsody</h3>
+              <small>Feb–Mar & Jun–Aug 2024 · FR/UK/US/JP collaboration</small>
+              <div class="pill-row" style="margin-top:10px;">
+                <span class="pill">Excel</span>
+                <span class="pill">Communication</span>
+              </div>
+            </div>
+            <div>
+              <ul>
+                <li>Reorganized <b>200k+ part numbers</b> into a new product hierarchy.</li>
+                <li>Collaborated with DATA & product teams across countries to ensure consistency.</li>
+                <li>Improved international product DB reliability.</li>
+              </ul>
+            </div>
+          </article>
+          <!-- APEM -->
+          <article class="xp">
+            <div>
+              <h3>Data Scientist · APEM</h3>
+              <small>Sep 2022 – Nov 2023 · Toulouse, France</small>                        
+              <div class="pill-row" style="margin-top:10px;">
+                <span class="pill">Python</span>
+                <span class="pill">Streamlit</span>
+                <span class="pill">HTML</span>
+              </div>
+            </div>
+            <div>
+              <ul>
+                <li>Built interactive <b>Streamlit apps</b> for component restrictions & product codes.</li>
+                <li>Automated reporting & UX workflows to reduce manual checks.</li>
+                <li>Trained users and ensured efficient tool adoption.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Projects ===== -->
+    <section id="projects">
+      <div class="container">
+        <div class="sec-head">
+          <h2>Projects</h2>
+          <a class="btn" href="https://github.com/VelenL" target="_blank">All on GitHub</a>
+        </div>
+        <div class="grid">
+          <article class="proj">
+            <h3>
+              <a href="https://github.com/VelenL/Anomaly_Detection" target="_blank" rel="noopener">
+                Anomaly Detection – Breast Cancer
+              </a>
+            </h3>
+            <p>
+              Developed an unsupervised anomaly detection pipeline using the
+              Multivariate Gaussian model to identify rare malignant cases in a breast cancer dataset.
+              Optimized the threshold (epsilon) by maximizing F1-score to improve detection accuracy.
+              Visualized detected outliers that deviated from the main cluster, revealing potential malignancies.
+            </p>
+            <span class="tag">Python</span>
+            <span class="tag">Matplotlib</span>
+            <span class="tag">Gaussian Model</span>
+            <span class="tag">Anomaly Detection</span>
+          </article>
+          <article class="proj">
+            <h3>
+              <a href="https://github.com/VelenL/recommendation_system_for_books"
+                target="_blank" rel="noopener">
+                Book Recommendation System
+              </a>
+            </h3>
+            <p>
+              Built a content-based recommender using the Goodreads “Best 1500 Books” dataset. 
+              Combined metadata into textual features and 
+              applied CountVectorizer with Cosine Similarity to suggest similar books. 
+              Added a popularity-based ranking using average rating and number of raters.
+            </p>
+            <span class="tag">CountVectorizer</span>
+            <span class="tag">Cosine Similarity</span>
+            <span class="tag">Recommender System</span>
+          </article>
+          <article class="proj">
+            <h3>
+              <a href="https://github.com/VelenL/Time_series_for_airport_traffic_forecast" target="_blank" rel="noopener">
+                Time Series — Marseille Airport Traffic Forecasting
+              </a>
+            </h3>
+            <p>
+              Built a seasonal forecasting model for Marseille airport’s monthly passenger traffic using
+              log transformation, differencing, and SARIMA/SARIMAX. Conducted
+              residual diagnostics and outlier corrections to ensure model stability and interpretability.
+              The final model successfully captured long-term trends and seasonality, producing accurate
+              forecasts for operational planning.
+            </p>
+            <span class="tag">R</span>
+            <span class="tag">Time Series</span>
+            <span class="tag">SARIMA</span>
+            <span class="tag">Forecasting</span>
+          </article>
+          <article class="proj">
+            <h3>
+              <a href="https://github.com/VelenL/normal_chatbot" target="_blank" rel="noopener">
+                International Student Support Chatbot
+              </a>
+            </h3>
+            <p>
+              Developed an intent-based chatbot using Python, Flask, and Streamlit to assist international students
+              with daily life topics. The system combines tokenization, lemmatization, 
+              stop-word removal, and bag-of-words vectorization to classify user questions through a 
+              neural network (Keras). The trained model is served via a Flask API and connected to an interactive 
+              Streamlit web interface for real-time responses.
+            </p>
+            <span class="tag">Python</span>
+            <span class="tag">Flask</span>
+            <span class="tag">Streamlit</span>
+            <span class="tag">Keras</span>
+            <span class="tag">NLP</span>
+            <span class="tag">Chatbot</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Portfolio (screenshots / demos) ===== -->
+    <section id="portfolio">
+      <div class="container">
+        <div class="sec-head">
+          <h2>Portfolio</h2>
+        </div>
+        <div class="gallery">
+          <!-- 占位截图：把 .thumb 换成背景图，如 style="background:url(/assets/app1.png) center/cover" -->
+          <!-- ① R Shiny — OECD Housing Explorer -->
+          <article class="shot">
+            <button class="thumb"
+                    style="background:url(housing_dashboard.png) center/cover"
+                    aria-label="Open full screenshot"
+                    data-full="housing_dashboard@2x.png"></button>
+            <div class="meta">
+              <div style="font-weight:700">
+                <a href="https://github.com/VelenL/Rshiny_visualization_housing_price"
+                  target="_blank" rel="noopener">
+                  R Shiny — OECD Housing Explorer
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ② Streamlit — Sentiment Analysis -->
+          <article class="shot">
+            <button class="thumb"
+                    style="background:url(sentiment_ui.png) center/cover"
+                    aria-label="Open full screenshot"
+                    data-full="sentiment_ui.png"></button>
+            <div class="meta">
+              <div style="font-weight:700">
+                <a href="https://github.com/VelenL/tweet_sentiment_analyse_steamlitapp"
+                  target="_blank" rel="noopener">
+                  Tweet Sentiment Analysis
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ③ APEM — Product Configurator -->
+          <article class="shot">
+            <button class="thumb"
+                    style="background:url(apem_ui.png) center/cover"
+                    aria-label="Open full screenshot"
+                    data-full="apem_ui.png"></button>
+            <div class="meta">
+              <div style="font-weight:700">
+                <a href="https://github.com/VelenL/Product-Configurator"
+                  target="_blank" rel="noopener">
+                  Product Configurator
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contact ===== -->
+    <section id="contact">
+      <div class="container">
+        <div class="sec-head"><h2>Contact</h2></div>
+        <div class="card" style="display:grid; gap:10px">
+          <div>Email: <a href="mailto:weilun.lin911@gmail.com">weilun.lin911@gmail.com</a></div>
+          <div>LinkedIn: <a href="https://www.linkedin.com/in/velenlin/" target="_blank">linkedin.com/in/velenlin</a></div>
+          <div>GitHub: <a href="https://github.com/VelenL" target="_blank">github.com/VelenL</a></div>
+          <div>Location: Toulouse, France</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="lb" class="lightbox" aria-hidden="true" role="dialog" aria-label="Screenshot viewer">
+    <button class="lb-close" aria-label="Close">×</button>
+    <img id="lb-img" alt="Full screenshot of the OECD Housing dashboard" />
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <div class="container">© <span id="y"></span> Weilun Lin — Data & AI</div>
+  </footer>
+
+  <!-- ===== Small JS ===== -->
+  <script>
+    // 年份
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // 平滑滚动（已用 scroll-behavior），这里补充激活导航状态
+    const links = document.querySelectorAll('header nav a[href^="#"]');
+    const sections = [...document.querySelectorAll('main section[id]')];
+
+    function setActive() {
+      const pos = window.scrollY + 120; // header offset
+      let current = sections[0].id;
+      for (const sec of sections) {
+        if (pos >= sec.offsetTop) current = sec.id;
+      }
+      links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+    }
+    setActive();
+    window.addEventListener('scroll', setActive);
+
+    // 对锚点做平滑滚动兼容（Safari）
+    links.forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id=a.getAttribute('href').slice(1);
+        const el=document.getElementById(id);
+        if(el){
+          e.preventDefault();
+          window.scrollTo({top: el.offsetTop-70, behavior:'smooth'});
+        }
+      })
+    })
+  </script>
+  <script>
+    // Avatar popover toggle
+    const brand = document.getElementById('brandWrap');
+    const btn   = document.getElementById('avatarBtn');
+    const card  = document.getElementById('profileCard');
+
+    function closeCard(){
+        brand.classList.remove('open');
+        btn.setAttribute('aria-expanded','false');
+    }
+    function toggleCard(){
+        const open = brand.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    btn.addEventListener('click', (e)=>{ e.stopPropagation(); toggleCard(); });
+    document.addEventListener('click', (e)=>{
+        if(!brand.contains(e.target)) closeCard();
+    });
+    window.addEventListener('scroll', closeCard);
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeCard(); });
+  </script>
+
+  <script>
+    // Lightbox
+    const lb = document.getElementById('lb');
+    const lbImg = document.getElementById('lb-img');
+    const lbClose = document.querySelector('.lb-close');
+
+    // 绑定所有缩略图
+    document.querySelectorAll('.shot .thumb').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const big = btn.getAttribute('data-full');
+        if(!big) return;
+        lbImg.src = big;
+        lb.classList.add('open');
+        lb.setAttribute('aria-hidden','false');
+      });
+    });
+
+    // 关闭逻辑
+    function closeLB(){
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden','true');
+      lbImg.src = '';
+    }
+    lbClose.addEventListener('click', closeLB);
+    lb.addEventListener('click', (e)=>{ if(e.target===lb) closeLB(); });
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLB(); });
+  </script>
+
+
+</body>
+</html>
