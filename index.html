@@ -5,7 +5,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Weilun Lin · Data & AI</title>
-  <meta name="description" content="Single-page portfolio of Weilun Lin — Data & AI. Resume, projects, portfolio and contact." />
+  <link rel="icon" href="profile.jpeg" type="image/jpeg" />
+  <meta name="description" content="Portfolio of Weilun Lin — data quality, automation and practical AI. Experience, projects and contact." />
 
   <!-- ===== Fonts ===== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,13 +50,20 @@
       background:linear-gradient(180deg, rgba(10,12,26,.8), rgba(10,12,26,.2));
       border-bottom:1px solid rgba(255,255,255,.06);
     }
-    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0; position:relative}
     .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px}
     .brand .dot{width:10px; height:10px; border-radius:50%;
       background:linear-gradient(135deg,var(--accent),var(--accent-2));
       box-shadow:0 0 14px var(--accent)}
     .nav a{margin-left:16px; font-weight:700; opacity:.9}
     .nav a.active{color:#fff; background:rgba(139,92,246,.18); padding:8px 12px; border-radius:999px; text-decoration:none; border:1px solid rgba(139,92,246,.4)}
+    .nav-toggle{
+      display:none; align-items:center; justify-content:center;
+      width:42px; height:42px; border-radius:12px;
+      border:1px solid var(--border); color:var(--fg);
+      background:rgba(255,255,255,.04); font-size:22px; cursor:pointer;
+    }
+    .nav-toggle:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
     .btn{display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:999px;
       background:linear-gradient(135deg, rgba(110,231,255,.15), rgba(139,92,246,.15));
       border:1px solid var(--border); color:var(--fg); box-shadow:var(--shadow); font-weight:800}
@@ -300,6 +308,22 @@
       .shot{grid-column:span 12}
     }
 
+    @media (max-width: 720px){
+      .nav{padding:10px 0}
+      .brand{gap:9px}
+      .brand > span{font-size:.92rem; line-height:1.15}
+      .nav-toggle{display:inline-flex; flex:0 0 auto}
+      header nav{
+        display:none; position:absolute; top:calc(100% + 8px); right:0;
+        min-width:190px; padding:8px; border-radius:14px;
+        background:var(--card); border:1px solid var(--border);
+        box-shadow:var(--shadow);
+      }
+      header nav.open{display:grid; gap:4px}
+      header nav a,
+      header nav a.active{margin:0; padding:10px 12px; border-radius:10px}
+    }
+
     .hero-actions {
       display: flex;
       gap: 12px;
@@ -342,7 +366,9 @@
             </div>
         </div>
       </div> 
-      <nav>
+      <button class="nav-toggle" id="navToggle" type="button"
+              aria-expanded="false" aria-controls="siteNav" aria-label="Open navigation">☰</button>
+      <nav id="siteNav">
         <a href="#home" class="active">Home</a>
         <a href="#resume">Resume</a>
         <a href="#projects">Projects</a>
@@ -364,16 +390,17 @@
             <span class="reality-text">into realities.</span>
           </h1>
           <p class="subtitle">
-            MSc in Artificial Intelligence & Business Analytics (TBS). 
+            MSc in Artificial Intelligence & Business Analytics (TBS), working at the intersection
+            of data quality, automation and practical AI.
           </p>
           <p class="subtitle">
-            Data Analyst / Junior Data Scientist specialised in automated reporting,
-            interactive dashboards and applied ML for pricing, product data and operations.
-            Experienced across manufacturing, consulting and international projects.
+            I turn complex product and operational data into reliable datasets, interactive tools
+            and clearer decisions. Experienced in manufacturing, consulting and international collaboration.
           </p>
           <div class="pill-row">
-            <span class="pill">Python</span><span class="pill">SQL</span><span class="pill">R</span>
-            <span class="pill">Power BI</span><span class="pill">Tableau</span><span class="pill">Azure</span>
+            <span class="pill">Excel</span><span class="pill">SQL</span><span class="pill">Python</span>
+            <span class="pill">Streamlit</span><span class="pill">Power BI</span>
+            <span class="pill">Tableau</span><span class="pill">Azure</span>
           </div>
           <div class="hero-actions">
             <a class="btn" href="https://www.linkedin.com/in/velenlin/" target="_blank" rel="noopener">LinkedIn</a>
@@ -412,7 +439,7 @@
           <article class="xp">
             <div>
               <h3>Data Analyst · ITT 360 GmbH</h3>
-              <small>Jul 2025 – Sep 2025 · Remote </small>
+              <small>Jul 2025 – Sep 2025 · Assignment at APEM</small>
               <div class="pill-row" style="margin-top:10px;">
                 <span class="pill">Excel</span>
                 <span class="pill">Python</span>
@@ -420,17 +447,17 @@
             </div>
             <div>
               <ul>
-                <li>Integrated & consolidated data from <b>200+ product series</b>.</li>
-                <li>Improved pricing capacity tracking via better validation & integration.</li>
-                <li>Analyzed inconsistencies and resolved data quality issues.</li>
+                <li>Consolidated pricing data for <b>200+ product series</b> from Excel files into an internal management tool.</li>
+                <li>Performed data quality and consistency checks, identified anomalies and contributed to their correction.</li>
+                <li>Improved the reliability of data used to monitor pricing capabilities.</li>
               </ul>
             </div>
           </article>
           <!-- RHAPSODY -->
           <article class="xp">
             <div>
-              <h3>Data Consultant · Rhapsody</h3>
-              <small>Feb–Mar & Jun–Aug 2024 · FR/UK/US/JP collaboration</small>
+              <h3>Consulting Engineer (Data) · Rhapsody</h3>
+              <small>Feb–Mar & Jun–Aug 2024 · Assignment at APEM</small>
               <div class="pill-row" style="margin-top:10px;">
                 <span class="pill">Excel</span>
                 <span class="pill">Communication</span>
@@ -438,9 +465,9 @@
             </div>
             <div>
               <ul>
-                <li>Reorganized <b>200k+ part numbers</b> into a new product hierarchy.</li>
-                <li>Collaborated with DATA & product teams across countries to ensure consistency.</li>
-                <li>Improved international product DB reliability.</li>
+                <li>Reorganized and reclassified <b>200,000+ product references</b> into a new hierarchical structure with Excel.</li>
+                <li>Applied product-family and series rules to ensure classification accuracy.</li>
+                <li>Coordinated validation with Data and Product teams in France, the UK, the US and Japan.</li>
               </ul>
             </div>
           </article>
@@ -448,7 +475,7 @@
           <article class="xp">
             <div>
               <h3>Data Scientist · APEM</h3>
-              <small>Sep 2022 – Nov 2023 · Toulouse, France</small>                        
+              <small>Sep 2022 – Apr 2023 & Jul 2023 – Nov 2023 · Toulouse, France</small>
               <div class="pill-row" style="margin-top:10px;">
                 <span class="pill">Python</span>
                 <span class="pill">Streamlit</span>
@@ -457,9 +484,9 @@
             </div>
             <div>
               <ul>
-                <li>Built interactive <b>Streamlit apps</b> for component restrictions & product codes.</li>
-                <li>Automated reporting & UX workflows to reduce manual checks.</li>
-                <li>Trained users and ensured efficient tool adoption.</li>
+                <li>Developed <b>two internal web applications</b> with Python, Streamlit, HTML and CSS.</li>
+                <li>Translated Sales and Product compatibility rules into automated controls.</li>
+                <li>Identified and removed several thousand invalid product configurations and supported internal testing.</li>
               </ul>
             </div>
           </article>
@@ -643,6 +670,24 @@
     // 平滑滚动（已用 scroll-behavior），这里补充激活导航状态
     const links = document.querySelectorAll('header nav a[href^="#"]');
     const sections = [...document.querySelectorAll('main section[id]')];
+    const navToggle = document.getElementById('navToggle');
+    const siteNav = document.getElementById('siteNav');
+
+    function closeNav(){
+      siteNav.classList.remove('open');
+      navToggle.setAttribute('aria-expanded','false');
+      navToggle.setAttribute('aria-label','Open navigation');
+    }
+
+    navToggle.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      const open = siteNav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      navToggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    });
+    document.addEventListener('click', (e)=>{
+      if(!siteNav.contains(e.target) && e.target !== navToggle) closeNav();
+    });
 
     function setActive() {
       const pos = window.scrollY + 120; // header offset
@@ -658,6 +703,7 @@
     // 对锚点做平滑滚动兼容（Safari）
     links.forEach(a=>{
       a.addEventListener('click', e=>{
+        closeNav();
         const id=a.getAttribute('href').slice(1);
         const el=document.getElementById(id);
         if(el){
