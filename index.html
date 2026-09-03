@@ -4,14 +4,27 @@
   <!-- ===== Meta ===== -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Weilun Lin · Data & AI</title>
+  <title>Weilun Lin · Product Data &amp; Analytics</title>
   <link rel="icon" href="profile.jpeg" type="image/jpeg" />
-  <meta name="description" content="Portfolio of Weilun Lin — data quality, automation and practical AI. Experience, projects and contact." />
+  <meta name="description" content="Portfolio of Weilun Lin — product data quality, analytics and business-rule automation across manufacturing, consulting and finance." />
+  <link rel="canonical" href="https://velenl.github.io/VelenL.profile.io/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://velenl.github.io/VelenL.profile.io/" />
+  <meta property="og:title" content="Weilun Lin · Product Data &amp; Analytics" />
+  <meta property="og:description" content="Product data quality, analytics and business-rule automation across manufacturing, consulting and finance." />
+  <meta property="og:image" content="https://velenl.github.io/VelenL.profile.io/og.png" />
+  <meta property="og:image:width" content="1734" />
+  <meta property="og:image:height" content="907" />
+  <meta property="og:image:alt" content="Weilun Lin — Product Data, Analytics and Automation" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Weilun Lin · Product Data &amp; Analytics" />
+  <meta name="twitter:description" content="Turning data into reliable tools and clearer decisions." />
+  <meta name="twitter:image" content="https://velenl.github.io/VelenL.profile.io/og.png" />
 
   <!-- ===== Fonts ===== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
 
   <!-- ===== Styles (no framework) ===== -->
   <style>
@@ -140,7 +153,7 @@
 
 
     /* ===== Sections ===== */
-    section{padding:70px 0}
+    section{padding:70px 0; scroll-margin-top:72px}
     .sec-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:24px}
     .sec-head h2{margin:0; font-size:28px}
 
@@ -241,7 +254,9 @@
     .dropdown-content a:hover {
       background: rgba(139,92,246,.2);
     }
-    .dropdown:hover .dropdown-content {
+    .dropdown:hover .dropdown-content,
+    .dropdown:focus-within .dropdown-content,
+    .dropdown.open .dropdown-content {
       display: block;
     }
 
@@ -335,6 +350,14 @@
         justify-content: center;
         text-align: center;
       }
+      .sec-head{align-items:flex-start; gap:14px; flex-wrap:wrap}
+      .dropdown-content{left:0; right:auto}
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html,body{scroll-behavior:auto}
+      .ideas{animation:none}
+      *,*::before,*::after{transition-duration:.01ms !important}
     }
 
   </style>
@@ -347,7 +370,7 @@
         <button class="avatar-btn" id="avatarBtn" aria-haspopup="true" aria-expanded="false" title="Open profile card">
              <img src="profile.jpeg" alt="Weilun Lin" class="avatar">
         </button>
-        <span>Weilun Lin · Data & AI</span>
+        <span>Weilun Lin · Product Data &amp; Analytics</span>
 
         <!-- Popover 卡片 -->
         <div class="profile-popover" id="profileCard" role="dialog" aria-label="Profile quick actions">
@@ -355,7 +378,7 @@
                 <img src="profile.jpeg" alt="" class="avatar-lg">
                 <div>
                     <strong>Weilun Lin</strong>
-                    <div class="muted">Data & AI · Toulouse</div>
+                    <div class="muted">Product Data &amp; Analytics · Toulouse</div>
                 </div>
             </div>
             <div class="profile-links">
@@ -383,23 +406,23 @@
     <section class="hero" id="home">
       <div class="container hero-grid">
         <div>
-          <span class="badge">Open to CDI · Toulouse / France</span>
+          <span class="badge">Open to CDI / CDD · Toulouse / France</span>
           <h1 class="title brand-title">
             <span class="turning">Turning</span> <span class="ideas">ideas</span>
             <br class="br-desktop">
             <span class="reality-text">into realities.</span>
           </h1>
           <p class="subtitle">
-            MSc in Artificial Intelligence & Business Analytics (TBS), working at the intersection
+            MSc in Artificial Intelligence &amp; Business Analytics (TBS), working at the intersection
             of data quality, automation and practical AI.
           </p>
           <p class="subtitle">
-            I turn complex product and operational data into reliable datasets, interactive tools
+            I turn complex product, operational and financial data into reliable datasets, interactive tools
             and clearer decisions. Experienced in manufacturing, consulting and international collaboration.
           </p>
           <div class="pill-row">
             <span class="pill">Excel</span><span class="pill">SQL</span><span class="pill">Python</span>
-            <span class="pill">Streamlit</span><span class="pill">Power BI</span>
+            <span class="pill">Pandas</span><span class="pill">PySpark</span><span class="pill">Streamlit</span><span class="pill">Power BI</span>
             <span class="pill">Tableau</span><span class="pill">Azure</span>
           </div>
           <div class="hero-actions">
@@ -410,12 +433,12 @@
         </div>
         <div class="card">
           <div class="kpis">
-            <div class="kpi"><small>Experience</small><b>2 yrs</b><small>Data / AI</small></div>
+            <div class="kpi"><small>Experience</small><b>3 yrs</b><small>France &amp; China</small></div>
             <div class="kpi"><small>Datathon</small><b>Best Model</b><small>TBS 2023</small></div>
             <div class="kpi"><small>Languages</small><b>EN · FR · ZH</b><small>DALF C1</small></div>
           </div>
           <div style="margin-top:16px; font-size:.95rem; color:var(--muted)">
-            Recently: pricing data consolidation (200+ series), international product DB restructure (200k+ parts), Streamlit apps for UX & automation.
+            Recently: pricing data consolidation (200+ series), international product DB restructure (200k+ parts), Streamlit apps for UX &amp; automation.
           </div>
         </div>
       </div>
@@ -426,20 +449,20 @@
       <div class="container">
         <div class="sec-head">
           <h2>Professional Experience</h2>
-          <div class="dropdown">
-            <button class="btn">Download CV ▾</button>
-            <div class="dropdown-content">
+          <div class="dropdown" id="cvMenu">
+            <button class="btn" id="cvMenuButton" type="button" aria-expanded="false" aria-controls="cvMenuContent">Download CV ▾</button>
+            <div class="dropdown-content" id="cvMenuContent">
               <a href="CV_WeilunLIN_en_2026.pdf" download>English</a>
               <a href="CV_WeilunLIN_fr_2026.pdf" download>Français</a>
             </div>
           </div>
         </div>
         <div class="grid">
-          <!-- ITT360 -->
+          <!-- APEM / ITT360 -->
           <article class="xp">
             <div>
-              <h3>Data Analyst · ITT 360 GmbH</h3>
-              <small>Jul 2025 – Sep 2025 · Assignment at APEM</small>
+              <h3>Data Analyst · APEM</h3>
+              <small>Jul 2025 – Sep 2025 · Contract via ITT 360 GmbH</small>
               <div class="pill-row" style="margin-top:10px;">
                 <span class="pill">Excel</span>
                 <span class="pill">Python</span>
@@ -453,11 +476,11 @@
               </ul>
             </div>
           </article>
-          <!-- RHAPSODY -->
+          <!-- APEM / RHAPSODY -->
           <article class="xp">
             <div>
-              <h3>Consulting Engineer (Data) · Rhapsody</h3>
-              <small>Feb–Mar & Jun–Aug 2024 · Assignment at APEM</small>
+              <h3>Consulting Engineer (Data) · APEM</h3>
+              <small>Feb 2024 – Aug 2024 · Contract via Rhapsody</small>
               <div class="pill-row" style="margin-top:10px;">
                 <span class="pill">Excel</span>
                 <span class="pill">Communication</span>
@@ -475,7 +498,7 @@
           <article class="xp">
             <div>
               <h3>Data Scientist · APEM</h3>
-              <small>Sep 2022 – Apr 2023 & Jul 2023 – Nov 2023 · Toulouse, France</small>
+              <small>Sep 2022 – Nov 2023 · Toulouse, France</small>
               <div class="pill-row" style="margin-top:10px;">
                 <span class="pill">Python</span>
                 <span class="pill">Streamlit</span>
@@ -484,9 +507,30 @@
             </div>
             <div>
               <ul>
-                <li>Developed <b>two internal web applications</b> with Python, Streamlit, HTML and CSS.</li>
-                <li>Translated Sales and Product compatibility rules into automated controls.</li>
-                <li>Identified and removed several thousand invalid product configurations and supported internal testing.</li>
+                <li>Developed and internally tested a <b>multi-function product configuration application</b> with Python, Pandas and Streamlit.</li>
+                <li>Implemented series recommendation, product-reference generation and reverse decoding.</li>
+                <li>Translated Sales and Product compatibility rules into automated filters and validation controls.</li>
+                <li>Identified and removed several thousand invalid product configurations.</li>
+              </ul>
+            </div>
+          </article>
+          <!-- Earlier experience in China -->
+          <article class="xp">
+            <div>
+              <h3>Earlier Finance &amp; Data Experience · Shanghai</h3>
+              <small>2018–2020 · Internship experience</small>
+              <div class="pill-row" style="margin-top:10px;">
+                <span class="pill">Excel</span>
+                <span class="pill">Kingdee ERP</span>
+                <span class="pill">Financial Analysis</span>
+                <span class="pill">Audit</span>
+              </div>
+            </div>
+            <div>
+              <ul>
+                <li><b>Financial data analysis</b> · Shanghai Zhongcui Co., Ltd (Dec 2019–Feb 2020): created an Excel-based approach to identify anomalies and suspicious invoices and present the results in visual dashboards.</li>
+                <li><b>Finance operations</b> · Shanghai Zhuqun Information Technology Services Co., Ltd (Jan–Mar 2019): organised financial and billing data and supported financial-statement analysis using Excel and Kingdee ERP.</li>
+                <li><b>Audit support</b> · Zhongxingcai Guanghua Certified Public Accountants (Jan–Feb 2018): supported audit sampling and checks of accounting documents, balance-sheet items, income statements and cash-flow records.</li>
               </ul>
             </div>
           </article>
@@ -499,25 +543,26 @@
       <div class="container">
         <div class="sec-head">
           <h2>Projects</h2>
-          <a class="btn" href="https://github.com/VelenL" target="_blank">All on GitHub</a>
+          <a class="btn" href="https://github.com/VelenL" target="_blank" rel="noopener">All on GitHub</a>
         </div>
         <div class="grid">
           <article class="proj">
             <h3>
-              <a href="https://github.com/VelenL/Anomaly_Detection" target="_blank" rel="noopener">
-                Anomaly Detection – Breast Cancer
+              <a href="https://github.com/VelenL/Product-Configurator" target="_blank" rel="noopener">
+                Product Data Configurator
               </a>
             </h3>
             <p>
-              Developed an unsupervised anomaly detection pipeline using the
-              Multivariate Gaussian model to identify rare malignant cases in a breast cancer dataset.
-              Optimized the threshold (epsilon) by maximizing F1-score to improve detection accuracy.
-              Visualized detected outliers that deviated from the main cluster, revealing potential malignancies.
+              Built and internally tested a multi-function Streamlit application covering LED and PS product
+              families. Added fuzzy series recommendation, rule-based product-reference generation, reverse
+              decoding, compatibility validation and product-image lookup.
             </p>
             <span class="tag">Python</span>
-            <span class="tag">Matplotlib</span>
-            <span class="tag">Gaussian Model</span>
-            <span class="tag">Anomaly Detection</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">Streamlit</span>
+            <span class="tag">Business Rules</span>
+            <span class="tag">Data Quality</span>
+            <span class="tag">Fuzzy Matching</span>
           </article>
           <article class="proj">
             <h3>
@@ -538,34 +583,41 @@
           </article>
           <article class="proj">
             <h3>
-              <a href="https://github.com/VelenL/Time_series_for_airport_traffic_forecast" target="_blank" rel="noopener">
-                Time Series — Marseille Airport Traffic Forecasting
-              </a>
+              Real-estate Analytics with Tableau
             </h3>
             <p>
-              Built a seasonal forecasting model for Marseille airport’s monthly passenger traffic using
-              log transformation, differencing, and SARIMA/SARIMAX. Conducted
-              residual diagnostics and outlier corrections to ensure model stability and interpretability.
-              The final model successfully captured long-term trends and seasonality, producing accurate
-              forecasts for operational planning.
+              Prepared and consolidated five years of Toulouse-area real-estate transactions. Designed six
+              interactive dashboards combining maps, multidimensional filters, aggregated KPIs and Tableau
+              Forecast to compare prices, demand and sales trends.
             </p>
-            <span class="tag">R</span>
-            <span class="tag">Time Series</span>
-            <span class="tag">SARIMA</span>
+            <span class="tag">Tableau</span>
+            <span class="tag">425k+ Rows</span>
+            <span class="tag">Dashboards</span>
+            <span class="tag">Mapping</span>
             <span class="tag">Forecasting</span>
           </article>
           <article class="proj">
+            <h3>Distributed Analytics with PySpark</h3>
+            <p>
+              Used Spark RDD transformations to analyse approximately 58,000 tweet records, then applied an
+              explicit DataFrame schema and Spark SQL to approximately 80,000 real-estate records. Performed
+              text processing, joins, filtering, aggregation and unit-price comparisons.
+            </p>
+            <span class="tag">PySpark</span>
+            <span class="tag">RDD</span>
+            <span class="tag">DataFrame</span>
+            <span class="tag">Spark SQL</span>
+          </article>
+          <article class="proj">
             <h3>
-              <a href="https://github.com/VelenL/normal_chatbot" target="_blank" rel="noopener">
+              <a href="https://github.com/VelenL/International_Student_Support_Chatbot" target="_blank" rel="noopener">
                 International Student Support Chatbot
               </a>
             </h3>
             <p>
-              Developed an intent-based chatbot using Python, Flask, and Streamlit to assist international students
-              with daily life topics. The system combines tokenization, lemmatization, 
-              stop-word removal, and bag-of-words vectorization to classify user questions through a 
-              neural network (Keras). The trained model is served via a Flask API and connected to an interactive 
-              Streamlit web interface for real-time responses.
+              Developed an end-to-end intent-based chatbot covering 36 student-support topics and 316 question
+              patterns. Prepared NLP features, trained a Keras neural network, exposed predictions through a Flask
+              API and connected the service to an interactive Streamlit interface.
             </p>
             <span class="tag">Python</span>
             <span class="tag">Flask</span>
@@ -573,6 +625,22 @@
             <span class="tag">Keras</span>
             <span class="tag">NLP</span>
             <span class="tag">Chatbot</span>
+          </article>
+          <article class="proj">
+            <h3>
+              <a href="https://github.com/VelenL/Time_series_for_airport_traffic_forecast" target="_blank" rel="noopener">
+                Time Series — Marseille Airport Traffic Forecasting
+              </a>
+            </h3>
+            <p>
+              Modelled monthly passenger traffic with log transformation, seasonal differencing and SARIMA/SARIMAX.
+              Compared model specifications, checked residual behaviour and evaluated forecasts against a held-out
+              2016 period.
+            </p>
+            <span class="tag">R</span>
+            <span class="tag">Time Series</span>
+            <span class="tag">SARIMA</span>
+            <span class="tag">Model Diagnostics</span>
           </article>
         </div>
       </div>
@@ -644,22 +712,22 @@
         <div class="sec-head"><h2>Contact</h2></div>
         <div class="card" style="display:grid; gap:10px">
           <div>Email: <a href="mailto:weilun.lin911@gmail.com">weilun.lin911@gmail.com</a></div>
-          <div>LinkedIn: <a href="https://www.linkedin.com/in/velenlin/" target="_blank">linkedin.com/in/velenlin</a></div>
-          <div>GitHub: <a href="https://github.com/VelenL" target="_blank">github.com/VelenL</a></div>
+          <div>LinkedIn: <a href="https://www.linkedin.com/in/velenlin/" target="_blank" rel="noopener">linkedin.com/in/velenlin</a></div>
+          <div>GitHub: <a href="https://github.com/VelenL" target="_blank" rel="noopener">github.com/VelenL</a></div>
           <div>Location: Toulouse, France</div>
         </div>
       </div>
     </section>
   </main>
 
-  <div id="lb" class="lightbox" aria-hidden="true" role="dialog" aria-label="Screenshot viewer">
+  <div id="lb" class="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Screenshot viewer">
     <button class="lb-close" aria-label="Close">×</button>
     <img id="lb-img" alt="Full screenshot of the OECD Housing dashboard" />
   </div>
 
   <!-- ===== Footer ===== -->
   <footer>
-    <div class="container">© <span id="y"></span> Weilun Lin — Data & AI</div>
+    <div class="container">© <span id="y"></span> Weilun Lin — Product Data &amp; Analytics</div>
   </footer>
 
   <!-- ===== Small JS ===== -->
@@ -714,6 +782,28 @@
     })
   </script>
   <script>
+    // Keyboard- and touch-friendly CV menu
+    const cvMenu = document.getElementById('cvMenu');
+    const cvMenuButton = document.getElementById('cvMenuButton');
+
+    function closeCvMenu(){
+      cvMenu.classList.remove('open');
+      cvMenuButton.setAttribute('aria-expanded','false');
+    }
+
+    cvMenuButton.addEventListener('click', (event)=>{
+      event.stopPropagation();
+      const open = cvMenu.classList.toggle('open');
+      cvMenuButton.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('click', (event)=>{
+      if(!cvMenu.contains(event.target)) closeCvMenu();
+    });
+    document.addEventListener('keydown', (event)=>{
+      if(event.key === 'Escape') closeCvMenu();
+    });
+  </script>
+  <script>
     // Avatar popover toggle
     const brand = document.getElementById('brandWrap');
     const btn   = document.getElementById('avatarBtn');
@@ -743,13 +833,16 @@
     const lbClose = document.querySelector('.lb-close');
 
     // 绑定所有缩略图
+    let lastLightboxTrigger = null;
     document.querySelectorAll('.shot .thumb').forEach(btn=>{
       btn.addEventListener('click', ()=>{
         const big = btn.getAttribute('data-full');
         if(!big) return;
+        lastLightboxTrigger = btn;
         lbImg.src = big;
         lb.classList.add('open');
         lb.setAttribute('aria-hidden','false');
+        lbClose.focus();
       });
     });
 
@@ -758,6 +851,7 @@
       lb.classList.remove('open');
       lb.setAttribute('aria-hidden','true');
       lbImg.src = '';
+      if(lastLightboxTrigger) lastLightboxTrigger.focus();
     }
     lbClose.addEventListener('click', closeLB);
     lb.addEventListener('click', (e)=>{ if(e.target===lb) closeLB(); });
